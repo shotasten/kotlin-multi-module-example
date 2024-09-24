@@ -1,4 +1,4 @@
-package com.shotaste.example.common.domain.framework.annotation
+package com.shotaste.example.common.framework.annotation
 
 /**
  * 引数なしのコンストラクタを生成するためのアノテーション

@@ -1,0 +1,5 @@
+spring:
+  mybatis:
+    type-aliases-package: com.shotaste.example.common.domain.repository
+    type-handlers-package: com.shotaste.example.common.domain.framework.mybatis
+    mapper-locations: classpath:com/shotaste/example/common/domain/repository/**/*.kt

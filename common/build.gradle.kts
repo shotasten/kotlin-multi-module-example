@@ -7,11 +7,11 @@ dependencies {
 //    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter")
 
-    //3rd party
+    // 3rd party
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.oshai:kotlin-logging-jvm")
 
-    //test
+    // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
