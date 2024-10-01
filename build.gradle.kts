@@ -53,12 +53,17 @@ subprojects {
         }
     }
 
+    dependencies {
+        // import bom
+        implementation(platform("org.testcontainers:testcontainers-bom:1.20.1"))
+    }
+
     tasks.withType<Test> {
         useJUnitPlatform()
     }
 
     noArg {
-        annotation("com.shotaste.example.common.domain.framework.annotation.NoArg")
+        annotation("com.shotaste.example.common.framework.annotation.NoArg")
     }
 
     ktlint {

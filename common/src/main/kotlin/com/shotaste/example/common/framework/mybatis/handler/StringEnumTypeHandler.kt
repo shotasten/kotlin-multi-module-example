@@ -1,4 +1,4 @@
-package com.shotaste.example.common.framework.mybatis
+package com.shotaste.example.common.framework.mybatis.handler
 
 import org.apache.ibatis.type.BaseTypeHandler
 import org.apache.ibatis.type.JdbcType

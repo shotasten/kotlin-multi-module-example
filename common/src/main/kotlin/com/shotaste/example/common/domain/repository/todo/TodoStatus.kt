@@ -1,6 +1,6 @@
 package com.shotaste.example.common.domain.repository.todo
 
-import com.shotaste.example.common.framework.mybatis.IntEnumBase
+import com.shotaste.example.common.framework.mybatis.handler.IntEnumBase
 
 enum class TodoStatus(override val value: Int, val label: String) : IntEnumBase<TodoStatus> {
     TODO(1, "todo"),

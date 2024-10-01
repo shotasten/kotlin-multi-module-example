@@ -13,7 +13,9 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./common/src/main/resources/db/mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
+      - ./common/src/main/resources/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./common/src/main/resources/db/my.cnf:/etc/mysql/conf.d/my.cnf
+
 
   redis:
     image: redis:7.0

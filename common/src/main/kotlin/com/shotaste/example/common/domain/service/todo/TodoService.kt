@@ -2,8 +2,8 @@ package com.shotaste.example.common.domain.service.todo
 
 import com.shotaste.example.common.domain.repository.todo.TodoCategory
 import com.shotaste.example.common.domain.repository.todo.TodoInsertDto
-import com.shotaste.example.common.domain.repository.todo.TodoMapper
 import com.shotaste.example.common.domain.repository.todo.TodoRecord
+import com.shotaste.example.common.domain.repository.todo.TodoRepository
 import com.shotaste.example.common.domain.repository.todo.TodoStatus
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.stereotype.Service
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 @Service
 class TodoService(
-    private val todoMapper: TodoMapper,
+    private val todoRepository: TodoRepository,
 ) {
     companion object {
         private val log = KotlinLogging.logger {}
@@ -20,13 +20,17 @@ class TodoService(
 
     @Transactional(readOnly = true)
     fun getTodoList(): List<TodoRecord> {
-        val list = todoMapper.findAll()
+        val list = todoRepository.findAll()
         log.info { "Todo list: $list" }
         return list
     }
 
     @Transactional(readOnly = true)
-    fun getTodoDetail(id: Int) = todoMapper.findById(id)
+    fun getTodoDetail(id: Int): TodoRecord? {
+        val record = todoRepository.findById(id)
+        log.info { "Todo detail: $record" }
+        return record
+    }
 
     fun createTodo(
         title: String,
@@ -44,7 +48,7 @@ class TodoService(
                 category = todoCategory,
             )
 
-        val isSuccess = todoMapper.insert(dto) > 0
+        val isSuccess = todoRepository.insert(dto) > 0
 
         if (isSuccess) {
             log.info { "Todo created #${dto.id}: $dto" }
@@ -59,7 +63,7 @@ class TodoService(
         id: Int,
         status: Int,
     ): Boolean {
-        val isSuccess = todoMapper.updateStatusById(id = id, status = TodoStatus.from(status)) > 0
+        val isSuccess = todoRepository.updateStatusById(id = id, status = TodoStatus.from(status)) > 0
 
         if (isSuccess) {
             log.info { "Todo status updated: id=$id, status=$status" }
@@ -71,7 +75,7 @@ class TodoService(
     }
 
     fun deleteTodo(id: Int): Boolean {
-        val isSuccess = todoMapper.deleteById(id) > 0
+        val isSuccess = todoRepository.deleteById(id) > 0
 
         if (isSuccess) {
             log.info { "Todo deleted: id=$id" }

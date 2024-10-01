@@ -1,0 +1,25 @@
+spring:
+  main:
+    lazy-initialization: true
+  datasource:
+    url: jdbc:tc:mysql:8.0.36:///database?TC_MY_CNF=db/mysql&TC_INITFUNCTION=com.shotaste.example.common.util.testcontainers.TestContainerDataSourceInitializer::setup
+    username: test
+    password: test
+    #    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      auto-commit: false
+      idle-timeout: 600000
+  redis:
+    host: localhost
+    port: 6379
+    ssl: false
+    password:
+
+logging:
+  level:
+    org.springframework: info
+    com.shotaste.example.common: debug

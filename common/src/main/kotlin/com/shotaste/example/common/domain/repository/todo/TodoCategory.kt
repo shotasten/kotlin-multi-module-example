@@ -1,6 +1,6 @@
 package com.shotaste.example.common.domain.repository.todo
 
-import com.shotaste.example.common.framework.mybatis.StringEnumBase
+import com.shotaste.example.common.framework.mybatis.handler.StringEnumBase
 
 enum class TodoCategory(override val value: String) : StringEnumBase<TodoCategory> {
     WORK("work"),
