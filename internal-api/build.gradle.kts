@@ -1,4 +1,11 @@
+plugins {
+    id("org.springdoc.openapi-gradle-plugin")
+}
+
 dependencies {
+    // project
+    implementation(project(":common"))
+
     // kotlin
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib"))
@@ -6,6 +13,7 @@ dependencies {
     // spring
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-cache")
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
@@ -13,25 +21,18 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.oshai:kotlin-logging-jvm")
     implementation("com.mysql:mysql-connector-j")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui")
 
     // test
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude(group = "org.junit.vintage", module = "junit-vintage-engine") // JUnit 4のテストを実行しないようにする
-        exclude(group = "junit", module = "junit") // JUnit 4自体を除外
-    }
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test")
-    testImplementation("com.ninja-squad:DbSetup-kotlin:2.1.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.testcontainers:testcontainers")
-    testImplementation("org.testcontainers:mysql")
+    testImplementation("io.mockk:mockk")
 }
 
-tasks {
-    bootJar {
-        enabled = false
-    }
-    jar {
-        enabled = true
-    }
+openApi {
+    apiDocsUrl.set("http://localhost:8081/v3/api-docs.yaml")
+    outputDir.set(file("$rootDir/openapi"))
+    outputFileName.set("internal-api.yaml")
 }

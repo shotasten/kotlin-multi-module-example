@@ -21,6 +21,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.github.oshai:kotlin-logging-jvm")
     implementation("com.mysql:mysql-connector-j")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -31,8 +32,7 @@ dependencies {
 }
 
 openApi {
-    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
-    outputDir.set(file("$buildDir/generated"))
-    outputFileName.set("openapi.yaml")
-    waitTimeInSeconds.set(10)
+    apiDocsUrl.set("http://localhost:8080/v3/api-docs.yaml")
+    outputDir.set(file("$rootDir/openapi"))
+    outputFileName.set("web-api.yaml")
 }

@@ -5,7 +5,7 @@ plugins {
     id("org.springframework.boot") version "3.3.4" apply false
     id("io.spring.dependency-management") version "1.1.6"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
-    id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
+    id("org.springdoc.openapi-gradle-plugin") version "1.9.0" apply false
 }
 
 allprojects {
@@ -51,12 +51,14 @@ subprojects {
 
             // test
             dependency("io.mockk:mockk:1.13.12")
-        }
-    }
 
-    dependencies {
-        // import bom
-        implementation(platform("org.testcontainers:testcontainers-bom:1.20.1"))
+            dependency("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+
+            dependencies {
+                // import bom
+                dependency("org.testcontainers:testcontainers-bom:1.20.1")
+            }
+        }
     }
 
     tasks.withType<Test> {
