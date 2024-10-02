@@ -1,3 +1,7 @@
+plugins {
+    id("org.springdoc.openapi-gradle-plugin")
+}
+
 dependencies {
     // project
     implementation(project(":common"))
@@ -24,4 +28,11 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.mockk:mockk")
+}
+
+openApi {
+    apiDocsUrl.set("http://localhost:8080/v3/api-docs")
+    outputDir.set(file("$buildDir/generated"))
+    outputFileName.set("openapi.yaml")
+    waitTimeInSeconds.set(10)
 }
