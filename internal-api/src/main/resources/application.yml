@@ -1,5 +1,8 @@
 server:
   port: 8081
+  error:
+    whitelabel:
+      enabled: false
 
 spring:
   application:
@@ -13,3 +16,7 @@ spring:
     password: ${DB_PASSWORD:password}
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
+
+application:
+  cache:
+    ttl-second: 30

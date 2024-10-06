@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: ci
+application:
+  cache:
+    ttl-second: 30

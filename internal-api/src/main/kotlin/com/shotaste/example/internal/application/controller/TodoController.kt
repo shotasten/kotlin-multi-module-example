@@ -1,4 +1,4 @@
-package com.shotaste.example.webapi.application.controller
+package com.shotaste.example.internal.application.controller
 
 import com.shotaste.example.common.domain.repository.todo.TodoCategory
 import com.shotaste.example.common.domain.repository.todo.TodoStatus

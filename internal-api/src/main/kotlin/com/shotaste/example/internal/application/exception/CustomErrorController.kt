@@ -1,4 +1,4 @@
-package com.shotaste.example.webapi.application.exception
+package com.shotaste.example.internal.application.exception
 
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.boot.web.error.ErrorAttributeOptions

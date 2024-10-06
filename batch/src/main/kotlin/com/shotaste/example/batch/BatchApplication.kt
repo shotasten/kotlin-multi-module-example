@@ -1,11 +1,11 @@
 package com.shotaste.example.batch
 
-import org.mybatis.spring.annotation.MapperScan
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
 
 @SpringBootApplication(scanBasePackages = ["com.shotaste.example"])
-@MapperScan("com.shotaste.example.common.domain.repository")
+@ConfigurationPropertiesScan(basePackages = ["com.shotaste.example"])
 class BatchApplication
 
 fun main(args: Array<String>) {

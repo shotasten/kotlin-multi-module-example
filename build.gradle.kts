@@ -1,11 +1,14 @@
 plugins {
-    kotlin("jvm") version "2.0.20"
-    kotlin("plugin.spring") version "2.0.20"
-    kotlin("plugin.noarg") version "2.0.20"
-    id("org.springframework.boot") version "3.3.4" apply false
+    kotlin("jvm") version "2.0.10"
+    kotlin("plugin.spring") version "2.0.10"
+    kotlin("plugin.noarg") version "2.0.10"
+    id("org.springframework.boot") version "3.3.3" apply false
     id("io.spring.dependency-management") version "1.1.6"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
     id("org.springdoc.openapi-gradle-plugin") version "1.9.0" apply false
+    id("java-library")
+    id("java-test-fixtures")
+    id("maven-publish")
 }
 
 allprojects {
@@ -24,6 +27,9 @@ subprojects {
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    apply(plugin = "java-library")
+    apply(plugin = "java-test-fixtures")
+    apply(plugin = "maven-publish")
 
     java {
         toolchain {
@@ -48,11 +54,13 @@ subprojects {
             // 3rd party
             dependency("io.github.oshai:kotlin-logging-jvm:5.1.4")
             dependency("com.mysql:mysql-connector-j:9.0.0")
+            dependency("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.0")
 
             // test
             dependency("io.mockk:mockk:1.13.12")
-
             dependency("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+            dependency("com.ninja-squad:springmockk:4.0.2")
+            dependency("com.ninja-squad:DbSetup-kotlin:2.1.0")
 
             dependencies {
                 // import bom

@@ -185,7 +185,10 @@ class WebApiCommonExceptionHandler {
         for (validationResult in validationResults) {
             for (resolvableErrors in validationResult.resolvableErrors) {
                 val fieldName =
-                    (resolvableErrors.arguments?.firstOrNull { it is DefaultMessageSourceResolvable } as? DefaultMessageSourceResolvable)?.defaultMessage
+                    resolvableErrors.arguments
+                        ?.filterIsInstance<DefaultMessageSourceResolvable>()
+                        ?.firstOrNull()
+                        ?.defaultMessage
                 val errorDetail =
                     ErrorResponse.ErrorDetail(
                         code = resolvableErrors.codes?.last() ?: "UNKNOWN",

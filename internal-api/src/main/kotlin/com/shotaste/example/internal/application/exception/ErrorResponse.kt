@@ -1,4 +1,4 @@
-package com.shotaste.example.webapi.application.exception
+package com.shotaste.example.internal.application.exception
 
 data class ErrorResponse(
     val code: Int,

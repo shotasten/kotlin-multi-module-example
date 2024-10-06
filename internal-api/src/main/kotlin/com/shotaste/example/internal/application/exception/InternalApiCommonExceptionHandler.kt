@@ -1,4 +1,4 @@
-package com.shotaste.example.webapi.application.exception
+package com.shotaste.example.internal.application.exception
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import jakarta.servlet.http.HttpServletRequest
@@ -19,7 +19,7 @@ import org.springframework.web.method.annotation.HandlerMethodValidationExceptio
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException
 
 @ControllerAdvice
-class WebApiCommonExceptionHandler {
+class InternalApiCommonExceptionHandler {
     companion object {
         private val log = KotlinLogging.logger {}
     }
@@ -185,7 +185,10 @@ class WebApiCommonExceptionHandler {
         for (validationResult in validationResults) {
             for (resolvableErrors in validationResult.resolvableErrors) {
                 val fieldName =
-                    (resolvableErrors.arguments?.firstOrNull { it is DefaultMessageSourceResolvable } as? DefaultMessageSourceResolvable)?.defaultMessage
+                    resolvableErrors.arguments
+                        ?.filterIsInstance<DefaultMessageSourceResolvable>()
+                        ?.firstOrNull()
+                        ?.defaultMessage
                 val errorDetail =
                     ErrorResponse.ErrorDetail(
                         code = resolvableErrors.codes?.last() ?: "UNKNOWN",
